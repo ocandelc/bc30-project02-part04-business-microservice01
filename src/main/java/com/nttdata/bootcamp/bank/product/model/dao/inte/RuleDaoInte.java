@@ -1,10 +1,10 @@
 package com.nttdata.bootcamp.bank.product.model.dao.inte;
 
 import com.nttdata.bootcamp.bank.product.model.document.CurrencyType;
-import com.nttdata.bootcamp.bank.product.model.document.Product;
+import com.nttdata.bootcamp.bank.product.model.document.Rule;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
-public interface ProductDaoInte extends ReactiveMongoRepository<Product, String> {
-    Mono<Product> findByCodeProduct(String codeProduct);
+public interface RuleDaoInte extends ReactiveMongoRepository<Rule, String> {
+    Mono<Rule> findByID(String id);
 }

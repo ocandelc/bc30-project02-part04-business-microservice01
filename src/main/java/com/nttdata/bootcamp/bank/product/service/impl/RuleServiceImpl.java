@@ -1,8 +1,11 @@
 package com.nttdata.bootcamp.bank.product.service.impl;
 
-import com.nttdata.bootcamp.bank.product.model.dao.inte.ProductDaoInte;
-import com.nttdata.bootcamp.bank.product.model.document.Product;
-import com.nttdata.bootcamp.bank.product.service.inte.ProductlServiceInte;
+import com.nttdata.bootcamp.bank.product.model.dao.inte.CurrencyTypeDaoInte;
+import com.nttdata.bootcamp.bank.product.model.dao.inte.RuleDaoInte;
+import com.nttdata.bootcamp.bank.product.model.document.CurrencyType;
+import com.nttdata.bootcamp.bank.product.model.document.Rule;
+import com.nttdata.bootcamp.bank.product.service.inte.CurrencyTypeServiceInte;
+import com.nttdata.bootcamp.bank.product.service.inte.RuleServiceInte;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +14,15 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ProductServiceImpl implements ProductlServiceInte {
-
-    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+public class RuleServiceImpl implements RuleServiceInte
+{
+    private static final Logger log = LoggerFactory.getLogger(RuleServiceImpl.class);
 
     @Autowired
-    private ProductDaoInte productDaoInte;
+    private RuleDaoInte productDaoInte;
 
     @Override
-    public Mono<Product> create(final Product product) {
+    public Mono<Rule> create(final Rule product) {
 
         return productDaoInte.save(product)
                 .doFirst(() -> log.info("Begin create Product"))
@@ -28,7 +31,7 @@ public class ProductServiceImpl implements ProductlServiceInte {
     }
 
     @Override
-    public Flux<Product> readAll() {
+    public Flux<Rule> readAll() {
 
         return productDaoInte.findAll()
                 .doFirst(() -> log.info("Begin readAll Product"))
@@ -37,15 +40,15 @@ public class ProductServiceImpl implements ProductlServiceInte {
     }
 
     @Override
-    public Mono<Product> findByCodeProduct(String codeProduct) {
-        return productDaoInte.findByCodeProduct(codeProduct)
+    public Mono<Rule> findById(String codeProduct) {
+        return productDaoInte.findById(codeProduct)
                 .doFirst(() -> log.info("Begin findByCodeProduct Product"))
                 .doOnNext(a -> log.info(a.toString()))
                 .doAfterTerminate(() -> log.info("Finish findByCodeProduct Product"));
     }
 
     @Override
-    public Mono<Product> updateById(final String id, final Product product) {
+    public Mono<Rule> updateById(final String id, final Rule product) {
 
         return productDaoInte.save(product)
                 .doFirst(() -> log.info("Begin updateById Product"))
