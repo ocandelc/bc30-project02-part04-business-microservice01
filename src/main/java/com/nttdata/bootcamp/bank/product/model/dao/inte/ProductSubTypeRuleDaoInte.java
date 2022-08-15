@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
 public interface ProductSubTypeRuleDaoInte extends ReactiveMongoRepository<ProductSubTypeRule, String> {
-    Mono<ProductSubTypeRule> findByID(String id);
+    Mono<ProductSubTypeRule> findById(String id);
 }

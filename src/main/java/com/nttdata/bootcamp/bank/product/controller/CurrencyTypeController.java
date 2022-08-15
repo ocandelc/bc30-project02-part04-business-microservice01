@@ -3,6 +3,7 @@ package com.nttdata.bootcamp.bank.product.controller;
 import com.nttdata.bootcamp.bank.product.model.dao.inte.CurrencyTypeDaoInte;
 import com.nttdata.bootcamp.bank.product.model.document.CurrencyType;
 import com.nttdata.bootcamp.bank.product.model.document.Product;
+import com.nttdata.bootcamp.bank.product.service.impl.CurrencyTypeServiceImpl;
 import com.nttdata.bootcamp.bank.product.service.inte.CurrencyTypeServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductlServiceInte;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class CurrencyTypeController
     private static final Logger log = LoggerFactory.getLogger(CurrencyTypeController.class);
 
     @Autowired
-    private CurrencyTypeServiceInte CurrencyTypeServiceInte;
+    private CurrencyTypeServiceImpl CurrencyTypeServiceInte;
 
     @PostMapping("create")
     public Mono<CurrencyType> create(@RequestBody final CurrencyType product) {
@@ -33,7 +34,7 @@ public class CurrencyTypeController
         return CurrencyTypeServiceInte.readAll();
     }
 
-    @GetMapping("/findByid/{id}")
+    @GetMapping("findByid/{id}")
     public Mono<CurrencyType> findByCodeProduct(@PathVariable String codeProduct) {
         log.debug("Begin RestController findByCodeProduct Product");
         return CurrencyTypeServiceInte.findByCodeId(codeProduct);

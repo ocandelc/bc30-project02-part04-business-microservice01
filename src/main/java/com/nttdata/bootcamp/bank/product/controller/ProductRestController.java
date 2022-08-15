@@ -31,7 +31,7 @@ public class ProductRestController {
         return productServiceInte.readAll();
     }
 
-    @GetMapping("/findByCode/{codeProduct}")
+    @GetMapping("findByCode/{codeProduct}")
     public Mono<Product> findByCodeProduct(@PathVariable String codeProduct) {
         log.debug("Begin RestController findByCodeProduct Product");
         return productServiceInte.findByCodeProduct(codeProduct);

@@ -2,6 +2,7 @@ package com.nttdata.bootcamp.bank.product.controller;
 
 import com.nttdata.bootcamp.bank.product.model.document.ProductSubTypeRule;
 import com.nttdata.bootcamp.bank.product.model.document.Rule;
+import com.nttdata.bootcamp.bank.product.service.impl.RuleServiceImpl;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductSubTypeRuleServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.RuleServiceInte;
 import org.slf4j.Logger;
@@ -12,13 +13,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/productsubtype")
+@RequestMapping("/api/rulecontroller")
 public class RuleController
 {
     private static final Logger log = LoggerFactory.getLogger(RuleController.class);
 
     @Autowired
-    private RuleServiceInte CurrencyTypeServiceInte;
+    private RuleServiceImpl CurrencyTypeServiceInte;
 
     @PostMapping("create")
     public Mono<Rule> create(@RequestBody final Rule product) {
@@ -32,7 +33,7 @@ public class RuleController
         return CurrencyTypeServiceInte.readAll();
     }
 
-    @GetMapping("/findByid/{id}")
+    @GetMapping("findByid/{id}")
     public Mono<Rule> findByCodeProduct(@PathVariable String codeProduct) {
         log.debug("Begin RestController findByCodeProduct Product");
         return CurrencyTypeServiceInte.findById(codeProduct);

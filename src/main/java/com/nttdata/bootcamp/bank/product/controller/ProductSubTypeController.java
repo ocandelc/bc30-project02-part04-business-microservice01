@@ -2,6 +2,7 @@ package com.nttdata.bootcamp.bank.product.controller;
 
 import com.nttdata.bootcamp.bank.product.model.document.CurrencyType;
 import com.nttdata.bootcamp.bank.product.model.document.ProductSubType;
+import com.nttdata.bootcamp.bank.product.service.impl.ProductSubTypeServiceImpl;
 import com.nttdata.bootcamp.bank.product.service.inte.CurrencyTypeServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductSubTypeServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductlServiceInte;
@@ -19,7 +20,7 @@ public class ProductSubTypeController
     private static final Logger log = LoggerFactory.getLogger(ProductlServiceInte.class);
 
     @Autowired
-    private ProductSubTypeServiceInte CurrencyTypeServiceInte;
+    private ProductSubTypeServiceImpl CurrencyTypeServiceInte;
 
     @PostMapping("create")
     public Mono<ProductSubType> create(@RequestBody final ProductSubType product) {
@@ -33,7 +34,7 @@ public class ProductSubTypeController
         return CurrencyTypeServiceInte.readAll();
     }
 
-    @GetMapping("/findByid/{id}")
+    @GetMapping("findByid/{id}")
     public Mono<ProductSubType> findByCodeProduct(@PathVariable String codeProduct) {
         log.debug("Begin RestController findByCodeProduct Product");
         return CurrencyTypeServiceInte.findByCodeId(codeProduct);

@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
 public interface RuleDaoInte extends ReactiveMongoRepository<Rule, String> {
-    Mono<Rule> findByID(String id);
+    Mono<Rule> findById(String id);
 }

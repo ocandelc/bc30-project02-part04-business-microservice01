@@ -2,6 +2,7 @@ package com.nttdata.bootcamp.bank.product.controller;
 
 import com.nttdata.bootcamp.bank.product.model.document.ProductSubType;
 import com.nttdata.bootcamp.bank.product.model.document.ProductSubTypeRule;
+import com.nttdata.bootcamp.bank.product.service.impl.ProductSubTypeRuleServiceImpl;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductSubTypeRuleServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductSubTypeServiceInte;
 import com.nttdata.bootcamp.bank.product.service.inte.ProductlServiceInte;
@@ -13,13 +14,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/productsubtype")
+@RequestMapping("/api/productsubtyperule")
 public class ProductSubTypeRuleController
 {
     private static final Logger log = LoggerFactory.getLogger(ProductSubTypeRuleController.class);
 
     @Autowired
-    private ProductSubTypeRuleServiceInte CurrencyTypeServiceInte;
+    private ProductSubTypeRuleServiceImpl CurrencyTypeServiceInte;
 
     @PostMapping("create")
     public Mono<ProductSubTypeRule> create(@RequestBody final ProductSubTypeRule product) {
@@ -33,7 +34,7 @@ public class ProductSubTypeRuleController
         return CurrencyTypeServiceInte.readAll();
     }
 
-    @GetMapping("/findByid/{id}")
+    @GetMapping("findByid/{id}")
     public Mono<ProductSubTypeRule> findByCodeProduct(@PathVariable String codeProduct) {
         log.debug("Begin RestController findByCodeProduct Product");
         return CurrencyTypeServiceInte.findByCodeId(codeProduct);
