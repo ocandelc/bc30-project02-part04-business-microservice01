@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
-@Document(collection="rule")
+@Document(collection="product_subtype_rule")
 public class ProductSubTypeRule
 {
     @Id
