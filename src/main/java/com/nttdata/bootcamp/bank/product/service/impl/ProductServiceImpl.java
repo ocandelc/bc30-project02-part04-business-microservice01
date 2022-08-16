@@ -21,10 +21,12 @@ public class ProductServiceImpl implements ProductlServiceInte {
     @Override
     public Mono<Product> create(final Product product) {
 
-        return productDaoInte.save(product)
+        var v =  productDaoInte.save(product)
                 .doFirst(() -> log.info("Begin create Product"))
                 .doOnNext(a -> log.info(a.toString()))
                 .doAfterTerminate(() -> log.info("Finish create Product"));
+        v.subscribe();
+        return v;
     }
 
     @Override
@@ -47,19 +49,23 @@ public class ProductServiceImpl implements ProductlServiceInte {
     @Override
     public Mono<Product> updateById(final String id, final Product product) {
 
-        return productDaoInte.save(product)
+        var v = productDaoInte.save(product)
                 .doFirst(() -> log.info("Begin updateById Product"))
                 .doOnNext(a -> log.info(a.toString()))
                 .doAfterTerminate(() -> log.info("Finish updateById Product"));
+        v.subscribe();
+        return v;
     }
 
     @Override
     public Mono<Void> deleteById(final String id) {
 
-        return productDaoInte.deleteById(id)
+        var v = productDaoInte.deleteById(id)
                 .doFirst(() -> log.info("Begin deleteById Product"))
                 .doOnNext(a -> log.info(a.toString()))
                 .doAfterTerminate(() -> log.info("Finish deleteById Product"));
+        v.subscribe();
+        return v;
     }
 
 }
